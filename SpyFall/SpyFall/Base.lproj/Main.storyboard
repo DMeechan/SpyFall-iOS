@@ -6,6 +6,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -13,7 +14,7 @@
         <!--MenuView-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController title="MenuView" id="BYZ-38-t0r" customClass="ViewController" customModule="SpyFall" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="MenuView" id="BYZ-38-t0r" customClass="MenuViewController" customModule="SpyFall" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
@@ -49,7 +50,7 @@
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                         <connections>
-                                            <segue destination="AEr-3C-lAO" kind="show" id="6DL-j5-UvQ"/>
+                                            <action selector="clickCreateGame:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Ksj-OY-OX3"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="clip" translatesAutoresizingMaskIntoConstraints="NO" id="Ik4-xO-hif" customClass="SquareButton" customModule="SpyFall" customModuleProvider="target">
@@ -70,6 +71,9 @@
                                                 <real key="value" value="4"/>
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="clickJoinGame:" destination="BYZ-38-t0r" eventType="touchUpInside" id="kX2-Aw-LrS"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <constraints>
@@ -88,6 +92,9 @@
                             <constraint firstItem="8Et-Ua-21C" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" constant="-100" id="zkC-Yr-M1V"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <segue destination="AEr-3C-lAO" kind="show" identifier="segueToLobby" id="oZb-rG-WN7"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
@@ -95,7 +102,7 @@
         <!--LobbyView-->
         <scene sceneID="I8a-zK-7y2">
             <objects>
-                <viewController title="LobbyView" id="AEr-3C-lAO" sceneMemberID="viewController">
+                <viewController title="LobbyView" id="AEr-3C-lAO" customClass="LobbyViewController" customModule="SpyFall" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="mxd-Xg-pXx"/>
                         <viewControllerLayoutGuide type="bottom" id="xMW-bV-Jil"/>
@@ -121,6 +128,9 @@
                                         <color key="value" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="clickActionButton:" destination="AEr-3C-lAO" eventType="touchUpInside" id="27g-Z1-KCd"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kPK-ON-HJt" customClass="SquareButton" customModule="SpyFall" customModuleProvider="target">
                                 <rect key="frame" x="16" y="25" width="52" height="38"/>
@@ -140,49 +150,82 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                                 <connections>
-                                    <segue destination="BYZ-38-t0r" kind="show" id="1fg-yf-epW"/>
+                                    <action selector="clickExit:" destination="AEr-3C-lAO" eventType="touchUpInside" id="lHH-jS-W8C"/>
                                 </connections>
                             </button>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="WXK-sn-HR6">
-                                <rect key="frame" x="52.5" y="164" width="270" height="415"/>
+                                <rect key="frame" x="52.5" y="152" width="270" height="427"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="270" id="pK9-pa-ytQ"/>
                                 </constraints>
                                 <color key="sectionIndexColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="FU1-ro-xvr">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="gray" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="PlayerTableViewCell" id="FU1-ro-xvr" customClass="PlayerTableViewCell" customModule="SpyFall" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="270" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="FU1-ro-xvr" id="2UR-Qp-LMW">
                                             <rect key="frame" x="0.0" y="0.0" width="270" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="cross" translatesAutoresizingMaskIntoConstraints="NO" id="1n8-NG-BFy">
+                                                    <rect key="frame" x="239" y="14" width="16" height="16"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="16" id="6Bv-Oi-zpw"/>
+                                                        <constraint firstAttribute="width" secondItem="1n8-NG-BFy" secondAttribute="height" multiplier="1:1" id="kJQ-Vf-xsG"/>
+                                                    </constraints>
+                                                </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Hello world" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0tn-em-akE">
+                                                    <rect key="frame" x="23" y="11" width="216" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" weight="thin" pointSize="18"/>
+                                                    <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="1n8-NG-BFy" firstAttribute="centerY" secondItem="2UR-Qp-LMW" secondAttribute="centerY" id="1T3-id-87J"/>
+                                                <constraint firstItem="0tn-em-akE" firstAttribute="leading" secondItem="2UR-Qp-LMW" secondAttribute="leadingMargin" constant="15" id="8ca-PD-XdJ"/>
+                                                <constraint firstItem="1n8-NG-BFy" firstAttribute="leading" secondItem="0tn-em-akE" secondAttribute="trailing" id="SBV-cH-jLQ"/>
+                                                <constraint firstItem="0tn-em-akE" firstAttribute="centerY" secondItem="2UR-Qp-LMW" secondAttribute="centerY" id="WVX-C0-sxu"/>
+                                                <constraint firstAttribute="trailing" secondItem="1n8-NG-BFy" secondAttribute="trailing" constant="15" id="mta-lA-wSu"/>
+                                            </constraints>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="nameLabel" destination="0tn-em-akE" id="WF2-Vv-Gu7"/>
+                                            <outlet property="readyImage" destination="1n8-NG-BFy" id="Hbx-P1-cfH"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                                 <sections/>
+                                <connections>
+                                    <outlet property="dataSource" destination="AEr-3C-lAO" id="79L-Ey-SDT"/>
+                                    <outlet property="delegate" destination="AEr-3C-lAO" id="RU5-ur-673"/>
+                                </connections>
                             </tableView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="xUX-9d-beP" userLabel="Upper wrapper">
-                                <rect key="frame" x="61.5" y="75" width="252.5" height="69"/>
+                                <rect key="frame" x="43.5" y="75" width="288" height="57"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Waiting for players..." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="g4O-0g-GRm">
-                                        <rect key="frame" x="0.0" y="0.0" width="252.5" height="33.5"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="28"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Waiting for players to ready up..." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="g4O-0g-GRm">
+                                        <rect key="frame" x="0.0" y="0.0" width="288" height="24"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                         <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="8TD-wu-bca" userLabel="Game ID Wrapper">
-                                        <rect key="frame" x="38" y="43.5" width="176.5" height="25.5"/>
+                                        <rect key="frame" x="63.5" y="34" width="161" height="23"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Game ID: 0000" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="f2v-Be-jSI">
-                                                <rect key="frame" x="0.0" y="0.0" width="144.5" height="25.5"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="21"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="129" height="23"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="19"/>
                                                 <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="contactAdd" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lC7-hN-Zbi">
-                                                <rect key="frame" x="154.5" y="0.0" width="22" height="25.5"/>
+                                                <rect key="frame" x="139" y="0.0" width="22" height="23"/>
                                                 <color key="tintColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                                <connections>
+                                                    <action selector="clickShareGameID:" destination="AEr-3C-lAO" eventType="touchUpInside" id="woU-Q8-3VO"/>
+                                                </connections>
                                             </button>
                                         </subviews>
                                     </stackView>
@@ -203,10 +246,20 @@
                             <constraint firstItem="xUX-9d-beP" firstAttribute="centerX" secondItem="tId-4C-tS9" secondAttribute="centerX" id="xc1-O5-Lor"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="actionButton" destination="4q6-Up-fRg" id="KtI-Da-xnD"/>
+                        <outlet property="gameIDLabel" destination="f2v-Be-jSI" id="MC0-Uq-xQv"/>
+                        <outlet property="gameStatusLabel" destination="g4O-0g-GRm" id="6QO-NC-B1N"/>
+                        <outlet property="playersTableView" destination="WXK-sn-HR6" id="GvC-UW-fPc"/>
+                        <segue destination="BYZ-38-t0r" kind="show" identifier="segueToMenu" id="J60-u1-36o"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lRe-1C-DJT" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="732" y="36"/>
+            <point key="canvasLocation" x="964" y="31.934032983508249"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="cross" width="32" height="32"/>
+    </resources>
 </document>

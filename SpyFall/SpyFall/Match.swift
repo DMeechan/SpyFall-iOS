@@ -8,39 +8,26 @@
 
 import Foundation
 
-class Player {
-  let name: String
-  var isHost: Bool = false
-  var isSpy: Bool = false
-  var isReady: Bool = false
-  var isFirstToAsk: Bool = false
-  var role: String = ""
-  
-  init(name: String) {
-    self.name = name
-    
-  }
-    
-}
 
 class Match {
   var status: Int = 0
-  var accessCode: Int = 0
+  var accessCode: String = ""
   var location: Location = Location()
   var players: [Player] = [Player]()
   var timer: Timer = Timer()
   
   // For status:
-    // 0 = lobby
-    // 1 = room (playing)
-    // 2 = room (match ended; in 1 min voting)
-    // 3 = room (match ended; voting failed; spy is guessing location)
-    // 4 = match over; closing game
+    // 0 = lobby (waiting for players)
+    // 1 = lobby (waiting for host)
+    // 2 = room (playing)
+    // 3 = room (match ended; in 1 min voting)
+    // 4 = room (match ended; voting failed; spy is guessing location)
+    // 5 = match over; closing game
   
   init(host: Player) {
     self.accessCode = generateAccessCode()
-    self.location = generateLocation()
-    self.timer = Timer()
+    self.location = chooseLocation()
+    // self.timer = Timer()
     
     add(player: host, isHost: true)
     
@@ -78,6 +65,7 @@ class Match {
     players[spy].isSpy = true
     unassignedPlayers.remove(at: spy)
     
+    // Go through and assign each player (except spy) a random role
     var i = 0
     while unassignedPlayers.count > 0 {
       let random:Int = Int(arc4random_uniform(UInt32(unassignedPlayers.count)))
@@ -86,57 +74,38 @@ class Match {
       unassignedPlayers.remove(at: random)
     }
     
-    
-    //if i < (players.count - 1) {
-      //print("FATAL ERROR: only was able to give out \(i + 1) roles (i = \(i) to \(players.count) players!)")
-    //}
+    // If fewer roles have been given out than there are players (excl. spy ofc), then big error potentially
+    if i < (players.count - 1) {
+      print("FATAL ERROR: only was able to give out \(i + 1) roles (i = \(i) to \(players.count) players!)")
+    }
     
   }
   
-  func generateAccessCode() -> Int {
+  func listPlayers() {
+    print("Players in match \(accessCode):")
+    for player in players {
+      print("  \(player.name) - isHost: \(player.isHost), isReady: \(player.isReady), isFirstToAsk: \(player.isFirstToAsk), role: \(player.role)")
+    }
+    
+  }
+  
+  func generateAccessCode() -> String {
     let random:Int = Int(arc4random_uniform(10000))
     
     let formatted: String = (String(format: "%04d", random))
-    let formattedRandom: Int = Int(formatted)!
+    print("Game access code: \(formatted)")
     
-    print("Game access code: \(formattedRandom)")
+    return formatted
     
-    return formattedRandom
   }
   
-  func generateLocation() -> Location {
+  func chooseLocation() -> Location {
+    let random:Int = Int(arc4random_uniform(UInt32(Location.shared.count)))
     
-    return Location()
+    return Location.shared[random]
+    
   }
   
 }
 
-class Location {
-  var name: String = ""
-  var roles: [String] = [String]()
-  
-  static var shared = [Location]()
-  
-  init() {
-    name = ""
-    roles = [String]()
-    
-  }
-  
-  init(name: String, roles: [String]) {
-    self.name = name
-    self.roles = roles
-    
-  }
-  
-  func getSampleLocations() -> [Location] {
-    var locations = [Location]()
-    locations.append(Location(name: "location1", roles: ["apple", "bee", "can"]))
-    locations.append(Location(name: "location2", roles: ["dog", "cat", "fox"]))
-    locations.append(Location(name: "location3", roles: ["coke", "pepsi", "dr pepper"]))
-    
-    return locations
 
-  }
-  
-}
