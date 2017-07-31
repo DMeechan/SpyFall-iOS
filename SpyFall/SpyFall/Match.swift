@@ -52,7 +52,8 @@ class Match {
   }
   
   func start() {
-    self.status = 1
+    self.status = 3
+    // TODO: Update status - make sure it's correct
     
     // Add each player to the unassignedPlayers array
     var unassignedPlayers = [Player]()

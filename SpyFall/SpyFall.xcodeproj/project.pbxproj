@@ -19,6 +19,7 @@
 		65B233181F2F8C3A001DA91C /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65B233171F2F8C3A001DA91C /* Location.swift */; };
 		65B2331E1F2F96AA001DA91C /* PlayerTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65B2331D1F2F96AA001DA91C /* PlayerTableViewCell.swift */; };
 		65B233221F2F9BA4001DA91C /* PlayerTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65B233211F2F9BA4001DA91C /* PlayerTableViewController.swift */; };
+		65B233241F2FB2EA001DA91C /* RoundViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65B233231F2FB2EA001DA91C /* RoundViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,12 +31,13 @@
 		657222861F2E7B4C008048B2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		657222891F2E7B4C008048B2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		6572228B1F2E7B4C008048B2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		65B233111F2F8050001DA91C /* MenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuViewController.swift; sourceTree = "<group>"; };
-		65B233131F2F808E001DA91C /* LobbyViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LobbyViewController.swift; sourceTree = "<group>"; };
+		65B233111F2F8050001DA91C /* MenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 2; lastKnownFileType = sourcecode.swift; path = MenuViewController.swift; sourceTree = "<group>"; tabWidth = 2; };
+		65B233131F2F808E001DA91C /* LobbyViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 2; lastKnownFileType = sourcecode.swift; path = LobbyViewController.swift; sourceTree = "<group>"; tabWidth = 2; };
 		65B233151F2F8C32001DA91C /* Player.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
 		65B233171F2F8C3A001DA91C /* Location.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
 		65B2331D1F2F96AA001DA91C /* PlayerTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayerTableViewCell.swift; sourceTree = "<group>"; };
 		65B233211F2F9BA4001DA91C /* PlayerTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayerTableViewController.swift; sourceTree = "<group>"; };
+		65B233231F2FB2EA001DA91C /* RoundViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 2; lastKnownFileType = sourcecode.swift; path = RoundViewController.swift; sourceTree = "<group>"; tabWidth = 2; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -92,6 +94,7 @@
 			children = (
 				65B233111F2F8050001DA91C /* MenuViewController.swift */,
 				65B233131F2F808E001DA91C /* LobbyViewController.swift */,
+				65B233231F2FB2EA001DA91C /* RoundViewController.swift */,
 			);
 			name = CONTROLLER;
 			sourceTree = "<group>";
@@ -197,6 +200,7 @@
 				65B2331E1F2F96AA001DA91C /* PlayerTableViewCell.swift in Sources */,
 				65B233161F2F8C32001DA91C /* Player.swift in Sources */,
 				65B233121F2F8050001DA91C /* MenuViewController.swift in Sources */,
+				65B233241F2FB2EA001DA91C /* RoundViewController.swift in Sources */,
 				65B233181F2F8C3A001DA91C /* Location.swift in Sources */,
 				65B233221F2F9BA4001DA91C /* PlayerTableViewController.swift in Sources */,
 			);
