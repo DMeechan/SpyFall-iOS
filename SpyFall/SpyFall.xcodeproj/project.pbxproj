@@ -7,12 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4ED7921672F85520FD9E7981 /* Pods_SpyFall.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2BDABF862C19E8B62682CF28 /* Pods_SpyFall.framework */; };
 		6567558F1F2EA86A00E615C2 /* Match.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6567558E1F2EA86A00E615C2 /* Match.swift */; };
 		656755911F2EC77000E615C2 /* SquareButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 656755901F2EC77000E615C2 /* SquareButton.swift */; };
 		657222801F2E7B4C008048B2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6572227F1F2E7B4C008048B2 /* AppDelegate.swift */; };
 		657222851F2E7B4C008048B2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 657222831F2E7B4C008048B2 /* Main.storyboard */; };
 		657222871F2E7B4C008048B2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 657222861F2E7B4C008048B2 /* Assets.xcassets */; };
 		6572228A1F2E7B4C008048B2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 657222881F2E7B4C008048B2 /* LaunchScreen.storyboard */; };
+		6598B4061F30A92500A43D0B /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6598B4051F30A92500A43D0B /* GoogleService-Info.plist */; };
 		65B233121F2F8050001DA91C /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65B233111F2F8050001DA91C /* MenuViewController.swift */; };
 		65B233141F2F808E001DA91C /* LobbyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65B233131F2F808E001DA91C /* LobbyViewController.swift */; };
 		65B233161F2F8C32001DA91C /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65B233151F2F8C32001DA91C /* Player.swift */; };
@@ -23,6 +25,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0DAEF0997BB168CAAB8F6026 /* Pods-SpyFall.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SpyFall.release.xcconfig"; path = "Pods/Target Support Files/Pods-SpyFall/Pods-SpyFall.release.xcconfig"; sourceTree = "<group>"; };
+		1872F951F88ED432448A0D30 /* Pods-SpyFall.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SpyFall.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SpyFall/Pods-SpyFall.debug.xcconfig"; sourceTree = "<group>"; };
+		2BDABF862C19E8B62682CF28 /* Pods_SpyFall.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SpyFall.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6567558E1F2EA86A00E615C2 /* Match.swift */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 2; lastKnownFileType = sourcecode.swift; path = Match.swift; sourceTree = "<group>"; tabWidth = 2; };
 		656755901F2EC77000E615C2 /* SquareButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SquareButton.swift; sourceTree = "<group>"; };
 		6572227C1F2E7B4C008048B2 /* SpyFall.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SpyFall.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -31,6 +36,7 @@
 		657222861F2E7B4C008048B2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		657222891F2E7B4C008048B2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		6572228B1F2E7B4C008048B2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		6598B4051F30A92500A43D0B /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../GoogleService-Info.plist"; sourceTree = "<group>"; };
 		65B233111F2F8050001DA91C /* MenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 2; lastKnownFileType = sourcecode.swift; path = MenuViewController.swift; sourceTree = "<group>"; tabWidth = 2; };
 		65B233131F2F808E001DA91C /* LobbyViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 2; lastKnownFileType = sourcecode.swift; path = LobbyViewController.swift; sourceTree = "<group>"; tabWidth = 2; };
 		65B233151F2F8C32001DA91C /* Player.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
@@ -45,6 +51,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4ED7921672F85520FD9E7981 /* Pods_SpyFall.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -57,6 +64,8 @@
 				65B233211F2F9BA4001DA91C /* PlayerTableViewController.swift */,
 				6572227E1F2E7B4C008048B2 /* SpyFall */,
 				6572227D1F2E7B4C008048B2 /* Products */,
+				FD97013A44A6BC4FFAD19B23 /* Pods */,
+				78B1CB457D8D1C0382CE3937 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -113,11 +122,29 @@
 		65B2331C1F2F8C6D001DA91C /* Supporting */ = {
 			isa = PBXGroup;
 			children = (
+				6572227F1F2E7B4C008048B2 /* AppDelegate.swift */,
 				657222861F2E7B4C008048B2 /* Assets.xcassets */,
 				6572228B1F2E7B4C008048B2 /* Info.plist */,
-				6572227F1F2E7B4C008048B2 /* AppDelegate.swift */,
+				6598B4051F30A92500A43D0B /* GoogleService-Info.plist */,
 			);
 			name = Supporting;
+			sourceTree = "<group>";
+		};
+		78B1CB457D8D1C0382CE3937 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				2BDABF862C19E8B62682CF28 /* Pods_SpyFall.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		FD97013A44A6BC4FFAD19B23 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				1872F951F88ED432448A0D30 /* Pods-SpyFall.debug.xcconfig */,
+				0DAEF0997BB168CAAB8F6026 /* Pods-SpyFall.release.xcconfig */,
+			);
+			name = Pods;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -127,9 +154,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 6572228E1F2E7B4C008048B2 /* Build configuration list for PBXNativeTarget "SpyFall" */;
 			buildPhases = (
+				ACAEBB12984ECD571281FAFF /* [CP] Check Pods Manifest.lock */,
 				657222781F2E7B4C008048B2 /* Sources */,
 				657222791F2E7B4C008048B2 /* Frameworks */,
 				6572227A1F2E7B4C008048B2 /* Resources */,
+				EA3ACA9985F7A5C10499FBC2 /* [CP] Embed Pods Frameworks */,
+				1D78C2A45689C942D5508958 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -181,12 +211,61 @@
 			buildActionMask = 2147483647;
 			files = (
 				6572228A1F2E7B4C008048B2 /* LaunchScreen.storyboard in Resources */,
+				6598B4061F30A92500A43D0B /* GoogleService-Info.plist in Resources */,
 				657222871F2E7B4C008048B2 /* Assets.xcassets in Resources */,
 				657222851F2E7B4C008048B2 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		1D78C2A45689C942D5508958 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-SpyFall/Pods-SpyFall-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		ACAEBB12984ECD571281FAFF /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		EA3ACA9985F7A5C10499FBC2 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-SpyFall/Pods-SpyFall-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		657222781F2E7B4C008048B2 /* Sources */ = {
@@ -325,6 +404,7 @@
 		};
 		6572228F1F2E7B4C008048B2 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 1872F951F88ED432448A0D30 /* Pods-SpyFall.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = 2T3457P6TK;
@@ -338,6 +418,7 @@
 		};
 		657222901F2E7B4C008048B2 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 0DAEF0997BB168CAAB8F6026 /* Pods-SpyFall.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = 2T3457P6TK;
