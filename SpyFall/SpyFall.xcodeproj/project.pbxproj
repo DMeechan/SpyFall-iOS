@@ -93,8 +93,8 @@
 		65B233191F2F8C5C001DA91C /* MODEL */ = {
 			isa = PBXGroup;
 			children = (
-				6567558E1F2EA86A00E615C2 /* Match.swift */,
 				6501801E1F33361C006C515D /* DataManager.swift */,
+				6567558E1F2EA86A00E615C2 /* Match.swift */,
 				65B233151F2F8C32001DA91C /* Player.swift */,
 				65B233171F2F8C3A001DA91C /* Location.swift */,
 			);

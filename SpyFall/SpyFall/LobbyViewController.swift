@@ -7,47 +7,36 @@
 //
 
 import UIKit
-import Firebase
-import FirebaseDatabase
 
 class LobbyViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
   
-  // Timer.scheduledTimer(timeInterval: transitionTime, target:self, selector: #selector(ViewController.function), userInfo: nil, repeats: false)
-  
-  var match:Match?
   var user:Player?
   var userIsHost: Bool = false
-  var playerTableUpdateTimer:Timer = Timer()
+  let match = DataManager.shared.match
   
   override func viewDidLoad() {
     super.viewDidLoad()
     
-    if match == nil || user == nil {
+    if user == nil {
       print("FATAL ERROR: match object or player object is empty")
+      print("User: ", user ?? "user is empty :(")
       
     }
     
     if userIsHost {
-      match?.add(player: Player(name: "Temp1"), isHost: false)
-      match?.add(player: Player(name: "Temp2"), isHost: false)
-      match?.add(player: Player(name: "Temp3"), isHost: false)
-      
-      DataManager.shared.write(match: match!)
+      match.add(player: Player(name: "Temp1"), host: false)
+      match.add(player: Player(name: "Temp2"), host: false)
+      match.add(player: Player(name: "Temp3"), host: false)
       
     }
     
-    match?.listPlayers()
+    DataManager.shared.match.listPlayers()
+    
+    DataManager.shared.write()
     
     updateUI()
     
-    playerTableUpdateTimer = Timer.scheduledTimer(timeInterval: 1, target:self, selector: #selector(LobbyViewController.updatePlayerTable), userInfo: nil, repeats: true)
     
-    
-    // match = DataManager.shared.read(accessCode: (match?.accessCode)!)
-    
-    //for player in (match?.players)! {
-    // player.isReady = true
-    //}
     
     // Do any additional setup after loading the view.
   }
@@ -57,14 +46,16 @@ class LobbyViewController: UIViewController, UITableViewDelegate, UITableViewDat
   
   func updateUI() {
     
-    gameIDLabel?.text = "Game ID: \(match?.accessCode ?? "")"
+    // Update players table
+    self.playersTableView.reloadData()
     
-    if match?.status == 0 {
-      // Waiting for players
+    gameIDLabel?.text = "Game ID: \(match.ID)"
+    
+    // Update match status
+    if match.status == 0 {
       gameStatusLabel.text = "Waiting for players to ready up..."
       
-    } else if match?.status == 1 {
-      // Waiting for host
+    } else if match.status == 1 {
       gameStatusLabel.text = "Waiting for host to start game..."
       
     } else {
@@ -72,14 +63,22 @@ class LobbyViewController: UIViewController, UITableViewDelegate, UITableViewDat
       
     }
     
+    // Check if the user needs to start the game or not (if they're host)
     if userIsHost {
-      // User is host, so needs to start game
-      actionButton?.setTitle("START GAME", for: .normal)
+      // User is host, so may need to start the game
+      
+      if allPlayersReady() {
+        // Nope, players aren't ready
+        actionButton?.setTitle("START GAME", for: .normal)
+        
+      } else {
+        actionButton.setTitle("PLAYERS NOT YET READY", for: .normal)
+      }
       
     } else {
       // User is a standard player who needs to ready up
       
-      if (user?.isReady)! {
+      if (user?.ready)! {
         // User is ready
         actionButton.setTitle("READY", for: .normal)
         
@@ -93,9 +92,9 @@ class LobbyViewController: UIViewController, UITableViewDelegate, UITableViewDat
     
   }
   
-  func isPlayersReady() -> Bool {
-    for player in (match?.players)! {
-      if player.isReady == false {
+  func allPlayersReady() -> Bool {
+    for player in match.players {
+      if player.ready == false {
         return false
       }
     }
@@ -104,14 +103,8 @@ class LobbyViewController: UIViewController, UITableViewDelegate, UITableViewDat
   }
   
   func startGame() {
-    playerTableUpdateTimer.invalidate()
-    match?.start()
+    match.start()
     // performSegue(withIdentifier: "", sender: self)
-    
-  }
-  
-  func updatePlayerTable() {
-    self.playersTableView.reloadData()
     
   }
   
@@ -123,12 +116,12 @@ class LobbyViewController: UIViewController, UITableViewDelegate, UITableViewDat
       fatalError("The dequeued cell is not an instance of PlayerTableViewCell")
     }
     
-    let player = match?.players[indexPath.row]
-    print("Table looking at player: \(player?.name ?? "UNKNOWN")")
+    let player = match.players[indexPath.row]
+    print("Table looking at player: \(player.name)")
     
-    cell.nameLabel?.text = player?.name
+    cell.nameLabel?.text = player.name
     
-    if (player?.isReady)! {
+    if player.ready {
       cell.readyImage.image = UIImage(named: "tick")
     } else {
       cell.readyImage.image = UIImage(named: "cross")
@@ -139,7 +132,7 @@ class LobbyViewController: UIViewController, UITableViewDelegate, UITableViewDat
   }
   
   func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-    return (match?.players.count)!
+    return match.players.count
     
   }
   
@@ -154,31 +147,19 @@ class LobbyViewController: UIViewController, UITableViewDelegate, UITableViewDat
   
   
   @IBAction func clickActionButton(_ sender: Any) {
-    match?.players.removeLast()
+    match.players.removeLast()
     
     if userIsHost {
-      if isPlayersReady() {
+      if allPlayersReady() {
         // Players are ready
         startGame()
-        
-      } else {
-        // Players not ready
-        actionButton.setTitle("PLAYERS NOT YET READY", for: .normal)
-        Timer.scheduledTimer(timeInterval: 2, target:self, selector: #selector(LobbyViewController.updateUI), userInfo: nil, repeats: false)
         
       }
       
     } else {
       // User is a normal player
-      if (user?.isReady)! {
-        // Mark as not ready
-        user?.isReady = false
-        
-      } else {
-        // Mark as ready
-        user?.isReady = true
-        
-      }
+      // So inverse their ready status for clicking the button
+      user?.ready = !(user?.ready)!
       
     }
     
@@ -186,6 +167,10 @@ class LobbyViewController: UIViewController, UITableViewDelegate, UITableViewDat
   
   @IBAction func clickExit(_ sender: Any) {
     performSegue(withIdentifier: "segueToMenu", sender: self)
+    
+    if userIsHost {
+      DataManager.shared.removeMatch()
+    }
     
   }
   

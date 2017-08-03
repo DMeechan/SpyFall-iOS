@@ -10,17 +10,17 @@ import Foundation
 
 class Player {
   var name: String
-  var isHost: Bool
-  var isSpy: Bool
-  var isReady: Bool
+  var host: Bool
+  var spy: Bool
+  var ready: Bool
   var role: String
   var vote: String
   
   init(name: String) {
     self.name = name
-    self.isHost = false
-    self.isSpy = false
-    self.isReady = false
+    self.host = false
+    self.spy = false
+    self.ready = false
     self.role = ""
     self.vote = ""
     
@@ -29,9 +29,9 @@ class Player {
   func toDictionary() -> [String: AnyObject] {
     let dict: [String: AnyObject] = [
       "name" : self.name as AnyObject,
-      "isHost" : self.isHost as AnyObject,
-      "isSpy" : self.isSpy as AnyObject,
-      "isReady" : self.isReady as AnyObject,
+      "host" : self.host as AnyObject,
+      "spy" : self.spy as AnyObject,
+      "ready" : self.ready as AnyObject,
       "role" : self.role as AnyObject,
       "vote" : self.vote as AnyObject
     ]
@@ -40,13 +40,14 @@ class Player {
     
   }
   
-  func fromDictionary(dict: [String: AnyObject]) {
-    self.name = dict["name"] as! String
-    self.isHost = dict["isHost"] as! Bool
-    self.isSpy = dict["isSpy"] as! Bool
-    self.isReady = dict["isReady"] as! Bool
-    self.role = dict["role"] as! String
-    self.vote = dict["vote"] as! String
+  func fromData(data: [String: AnyObject]) {
+    // Use dictionary to update player's values
+    self.name = data["name"] as! String
+    self.host = data["host"] as! Bool
+    self.spy = data["spy"] as! Bool
+    self.ready = data["ready"] as! Bool
+    self.role = data["role"] as! String
+    self.vote = data["vote"] as! String
     
   }
   

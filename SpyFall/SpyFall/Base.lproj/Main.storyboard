@@ -93,6 +93,7 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="joinGameButton" destination="Ik4-xO-hif" id="Kos-Z0-SUR"/>
                         <segue destination="AEr-3C-lAO" kind="show" identifier="segueToLobby" id="oZb-rG-WN7"/>
                     </connections>
                 </viewController>
