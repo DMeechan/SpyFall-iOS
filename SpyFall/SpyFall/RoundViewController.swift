@@ -9,7 +9,7 @@
 import UIKit
 
 class RoundViewController: UIViewController {
-  var timer: Timer
+  // var timer: Timer
   
   override func viewDidLoad() {
     super.viewDidLoad()

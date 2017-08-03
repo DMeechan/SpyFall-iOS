@@ -12,6 +12,7 @@ class MenuViewController: UIViewController {
   
   var hostingGame: Bool = false
   var user: Player = Player(name: "Jim")
+  var match: Match?
   
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -24,23 +25,29 @@ class MenuViewController: UIViewController {
   func createGame() {
     //LobbyViewController.match = Match()
     hostingGame = true
+    match = Match(host: user)
     performSegue(withIdentifier: "segueToLobby", sender: self)
   }
   
   func joinGame() {
+    
     performSegue(withIdentifier: "segueToLobby", sender: self)
   }
   
   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+    let lobby = segue.destination as! LobbyViewController
+    
+    lobby.user = self.user
+    lobby.userIsHost = hostingGame
     
     if hostingGame {
       print("Hosting game")
-      let lobby = segue.destination as! LobbyViewController
-      lobby.match = Match(host: user)
-      lobby.user = user
+      lobby.match = self.match
       
     } else {
       print("Joining game")
+      lobby.match = DataManager.shared.read(accessCode: "6298")
+      
     }
     
   }

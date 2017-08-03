@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import Firebase
+import FirebaseDatabase
 
 class LobbyViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
   
@@ -25,14 +27,14 @@ class LobbyViewController: UIViewController, UITableViewDelegate, UITableViewDat
       
     }
     
-    if (user?.isHost)! {
-      userIsHost = true
+    if userIsHost {
+      match?.add(player: Player(name: "Temp1"), isHost: false)
+      match?.add(player: Player(name: "Temp2"), isHost: false)
+      match?.add(player: Player(name: "Temp3"), isHost: false)
+      
+      DataManager.shared.write(match: match!)
       
     }
-    
-    match?.add(player: Player(name: "Oliver"), isHost: false)
-    match?.add(player: Player(name: "David"), isHost: false)
-    match?.add(player: Player(name: "Alex"), isHost: false)
     
     match?.listPlayers()
     
@@ -40,43 +42,18 @@ class LobbyViewController: UIViewController, UITableViewDelegate, UITableViewDat
     
     playerTableUpdateTimer = Timer.scheduledTimer(timeInterval: 1, target:self, selector: #selector(LobbyViewController.updatePlayerTable), userInfo: nil, repeats: true)
     
+    
+    // match = DataManager.shared.read(accessCode: (match?.accessCode)!)
+    
     //for player in (match?.players)! {
     // player.isReady = true
     //}
     
     // Do any additional setup after loading the view.
   }
+
   
-  func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-    let cellIdentifier = "PlayerTableViewCell"
-    guard let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as? PlayerTableViewCell else {
-      fatalError("The dequeued cell is not an instance of PlayerTableViewCell")
-    }
-    
-    let player = match?.players[indexPath.row]
-    print("Table looking at player: \(player?.name ?? "UNKNOWN")")
-    
-    cell.nameLabel?.text = player?.name
-    
-    if (player?.isReady)! {
-      cell.readyImage.image = UIImage(named: "tick")
-    } else {
-      cell.readyImage.image = UIImage(named: "cross")
-    }
-    
-    return cell
-    
-  }
-  
-  func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-    return (match?.players.count)!
-    
-  }
-  
-  func numberOfSections(in tableView: UITableView) -> Int {
-    return 1
-    
-  }
+  // MARK: User interface
   
   func updateUI() {
     
@@ -134,11 +111,43 @@ class LobbyViewController: UIViewController, UITableViewDelegate, UITableViewDat
   }
   
   func updatePlayerTable() {
-    DispatchQueue.main.async() {
-      self.playersTableView.reloadData()
-      
-    }
+    self.playersTableView.reloadData()
+    
   }
+  
+  // MARK: Manage Players TableView
+  
+  func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    let cellIdentifier = "PlayerTableViewCell"
+    guard let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as? PlayerTableViewCell else {
+      fatalError("The dequeued cell is not an instance of PlayerTableViewCell")
+    }
+    
+    let player = match?.players[indexPath.row]
+    print("Table looking at player: \(player?.name ?? "UNKNOWN")")
+    
+    cell.nameLabel?.text = player?.name
+    
+    if (player?.isReady)! {
+      cell.readyImage.image = UIImage(named: "tick")
+    } else {
+      cell.readyImage.image = UIImage(named: "cross")
+    }
+    
+    return cell
+    
+  }
+  
+  func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    return (match?.players.count)!
+    
+  }
+  
+  func numberOfSections(in tableView: UITableView) -> Int {
+    return 1
+    
+  }
+
   
   
   // MARK: Extra stuff
