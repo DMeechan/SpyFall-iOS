@@ -11,12 +11,14 @@ import UIKit
 class MenuViewController: UIViewController {
   
   var hostingGame: Bool = false
-  var user: Player = Player(name: "Jim")
   var gameIDToJoin = ""
+  var joiningGame: Bool = false
   
   override func viewDidLoad() {
     super.viewDidLoad()
+    gameIDField.isHidden = true
     resetJoinGameButton()
+    DataManager.shared.user.name = "yay"
     
     // Import locations
     Location.getSampleLocations()
@@ -26,19 +28,20 @@ class MenuViewController: UIViewController {
   func createGame() {
     // Switch to lobby
     hostingGame = true
-    DataManager.shared.match = Match(host: user)
+    DataManager.shared.match = Match(host: DataManager.shared.user)
     performSegue(withIdentifier: "segueToLobby", sender: self)
     
   }
   
-  func joinGame() {
+  func tryJoinGame() {
     // Reset Match data every time Menu is loaded
     DataManager.shared.match = Match()
     joinGameButton.setTitle("FINDING GAME...", for: .normal)
     joinGameButton.isEnabled = false
     
     // Join game if the access code is right
-    gameIDToJoin = "9264"
+    // gameIDToJoin = "0647"
+    gameIDToJoin = (gameIDField.text ?? "")
     DataManager.shared.read(gameID: gameIDToJoin)
     
     Timer.scheduledTimer(timeInterval: 1, target:self, selector: #selector(self.joinGameIfExists), userInfo: nil, repeats: false)
@@ -54,6 +57,7 @@ class MenuViewController: UIViewController {
     if DataManager.shared.match.ID != "" {
       // Match exists - let's join!
       joinGameButton.setTitle("JOINING...", for: .normal)
+      // DataManager.shared.writeUser(user: user)
       performSegue(withIdentifier: "segueToLobby", sender: self)
       
     } else {
@@ -78,21 +82,28 @@ class MenuViewController: UIViewController {
     DataManager.shared.lobbyViewRef = lobby
     
     // Get the lobby set up with the right data
-    lobby.user = self.user
     lobby.userIsHost = hostingGame
     
   }
   
   // MARK: Extra stuff
   
+  @IBOutlet weak var gameIDField: UITextField!
+  @IBOutlet weak var joinGameButton: SquareButton!
+  
   @IBAction func clickCreateGame(_ sender: Any) {
     createGame()
   }
   
-  @IBOutlet weak var joinGameButton: SquareButton!
-  
   @IBAction func clickJoinGame(_ sender: Any) {
-    joinGame()
+    if joiningGame == true {
+      tryJoinGame()
+      
+    } else {
+      gameIDField.isHidden = false
+      joiningGame = true
+      
+    }
   }
   
 }

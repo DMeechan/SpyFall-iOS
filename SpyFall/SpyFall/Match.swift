@@ -128,7 +128,7 @@ class Match {
   func toDictionary() -> [String:AnyObject] {
     let dict: [String: AnyObject] = [
       "status" : self.status as AnyObject,
-      "ID" : self.ID as AnyObject,
+      "id" : self.ID as AnyObject,
       "locationID" : self.locationID as AnyObject,
       "players" : self.playersToDictionary() as AnyObject,
       "startTime" : self.startTime as AnyObject,
@@ -142,7 +142,7 @@ class Match {
   
   func fromDictionary(dict: [String: AnyObject]) {
     self.status = dict["status"] as! Int
-    self.ID = dict["ID"] as! String
+    self.ID = dict["id"] as! String
     self.locationID = dict["locationID"] as! String
     
     // Take the players array and convert it to a dictionary
@@ -158,11 +158,12 @@ class Match {
     var players = [Player]()
     
     for playerItem in data {
-      let player = Player(name: "")
-      player.fromData(data: playerItem as! [String: AnyObject])
-      
-      players.append(player)
-      
+      if let realPlayer = playerItem as? [String: AnyObject] {
+        let player = Player(name: "")
+        player.fromData(data: realPlayer)
+        players.append(player)
+        
+      }
     }
     
     return players

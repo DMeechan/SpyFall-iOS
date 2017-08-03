@@ -10,32 +10,31 @@ import UIKit
 
 class LobbyViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
   
-  var user:Player?
   var userIsHost: Bool = false
   let match = DataManager.shared.match
   
   override func viewDidLoad() {
     super.viewDidLoad()
     
-    if user == nil {
-      print("FATAL ERROR: match object or player object is empty")
-      print("User: ", user ?? "user is empty :(")
-      
-    }
-    
     if userIsHost {
-      match.add(player: Player(name: "Temp1"), host: false)
-      match.add(player: Player(name: "Temp2"), host: false)
-      match.add(player: Player(name: "Temp3"), host: false)
+      // match.add(player: Player(name: "Temp1"), host: false)
+      // match.add(player: Player(name: "Temp2"), host: false)
+      // match.add(player: Player(name: "Temp3"), host: false)
+      
+    } else {
+      DataManager.shared.writeUser()
       
     }
     
     DataManager.shared.match.listPlayers()
     
-    DataManager.shared.write()
+    // DataManager.shared.write()
     
     updateUI()
     
+    if userIsHost {
+      DataManager.shared.read()
+    }
     
     
     // Do any additional setup after loading the view.
@@ -78,7 +77,7 @@ class LobbyViewController: UIViewController, UITableViewDelegate, UITableViewDat
     } else {
       // User is a standard player who needs to ready up
       
-      if (user?.ready)! {
+      if DataManager.shared.user.ready {
         // User is ready
         actionButton.setTitle("READY", for: .normal)
         
@@ -147,8 +146,6 @@ class LobbyViewController: UIViewController, UITableViewDelegate, UITableViewDat
   
   
   @IBAction func clickActionButton(_ sender: Any) {
-    match.players.removeLast()
-    
     if userIsHost {
       if allPlayersReady() {
         // Players are ready
@@ -159,8 +156,8 @@ class LobbyViewController: UIViewController, UITableViewDelegate, UITableViewDat
     } else {
       // User is a normal player
       // So inverse their ready status for clicking the button
-      user?.ready = !(user?.ready)!
-      
+      DataManager.shared.user.ready = !DataManager.shared.user.ready
+      DataManager.shared.writeUser()
     }
     
   }

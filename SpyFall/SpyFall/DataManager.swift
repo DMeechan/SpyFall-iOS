@@ -17,7 +17,9 @@ class DataManager {
   var ref: DatabaseReference?
   var databaseHandle: DatabaseHandle?
   var lobbyViewRef: LobbyViewController?
+  
   var match: Match
+  var user: Player
   
   init() {
     // Set up link to Firebase database
@@ -25,6 +27,7 @@ class DataManager {
     ref = Database.database().reference()
     
     match = Match()
+    user = Player(name: "")
     
   }
   
@@ -36,6 +39,7 @@ class DataManager {
   func read(gameID: String) {
     databaseHandle = ref?.child("matches").child(gameID).observe(.value, with: { (snapshot) in
       // Code to execute when the match with this access code changes
+      print("Received update from database")
       
       let output = snapshot.value as? [String: AnyObject]
       
@@ -56,11 +60,28 @@ class DataManager {
     
     ref?.child("matches").child(match.ID).setValue(match.toDictionary())
     
-    // ref?.child("matches").childByAutoId().setValue("hello world")
+  }
+  
+  func writeUser() {
+    // Scan through players array to find the index of the current user
+    var found: Bool = false
+    print("Scanning through players array to add player")
     
-    //ref?.child("matches").observeSingleEvent(of: .value, with: { (snapshot) in
-    //let value = snapshot.value as?
-    //})
+    var i = 0
+    
+    while i < match.players.count && found == false {
+      if match.players[i].name == user.name {
+        found = true
+      }
+      i += 1
+      
+    }
+    
+    // Now overwrite that player index with the updated user data
+    
+    ref?.child("matches").child(match.ID).child("players").child(String(i)).setValue(user.toDictionary())
+    
+    match.players.append(user)
     
   }
   

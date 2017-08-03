@@ -32,7 +32,7 @@
 		6501801E1F33361C006C515D /* DataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 2; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; tabWidth = 2; };
 		6567558E1F2EA86A00E615C2 /* Match.swift */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 2; lastKnownFileType = sourcecode.swift; path = Match.swift; sourceTree = "<group>"; tabWidth = 2; };
 		656755901F2EC77000E615C2 /* SquareButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SquareButton.swift; sourceTree = "<group>"; };
-		6572227C1F2E7B4C008048B2 /* SpyFall.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SpyFall.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		6572227C1F2E7B4C008048B2 /* Spyfall.temp_caseinsensitive_rename.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Spyfall.temp_caseinsensitive_rename.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6572227F1F2E7B4C008048B2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		657222841F2E7B4C008048B2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		657222861F2E7B4C008048B2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -74,7 +74,7 @@
 		6572227D1F2E7B4C008048B2 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				6572227C1F2E7B4C008048B2 /* SpyFall.app */,
+				6572227C1F2E7B4C008048B2 /* Spyfall.temp_caseinsensitive_rename.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -153,9 +153,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		6572227B1F2E7B4C008048B2 /* SpyFall */ = {
+		6572227B1F2E7B4C008048B2 /* Spyfall.temp_caseinsensitive_rename */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 6572228E1F2E7B4C008048B2 /* Build configuration list for PBXNativeTarget "SpyFall" */;
+			buildConfigurationList = 6572228E1F2E7B4C008048B2 /* Build configuration list for PBXNativeTarget "Spyfall.temp_caseinsensitive_rename" */;
 			buildPhases = (
 				ACAEBB12984ECD571281FAFF /* [CP] Check Pods Manifest.lock */,
 				657222781F2E7B4C008048B2 /* Sources */,
@@ -168,9 +168,9 @@
 			);
 			dependencies = (
 			);
-			name = SpyFall;
+			name = Spyfall.temp_caseinsensitive_rename;
 			productName = SpyFall;
-			productReference = 6572227C1F2E7B4C008048B2 /* SpyFall.app */;
+			productReference = 6572227C1F2E7B4C008048B2 /* Spyfall.temp_caseinsensitive_rename.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -190,7 +190,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 657222771F2E7B4C008048B2 /* Build configuration list for PBXProject "SpyFall" */;
+			buildConfigurationList = 657222771F2E7B4C008048B2 /* Build configuration list for PBXProject "Spyfall" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -203,7 +203,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				6572227B1F2E7B4C008048B2 /* SpyFall */,
+				6572227B1F2E7B4C008048B2 /* Spyfall.temp_caseinsensitive_rename */,
 			);
 		};
 /* End PBXProject section */
@@ -437,7 +437,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		657222771F2E7B4C008048B2 /* Build configuration list for PBXProject "SpyFall" */ = {
+		657222771F2E7B4C008048B2 /* Build configuration list for PBXProject "Spyfall" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				6572228C1F2E7B4C008048B2 /* Debug */,
@@ -446,7 +446,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		6572228E1F2E7B4C008048B2 /* Build configuration list for PBXNativeTarget "SpyFall" */ = {
+		6572228E1F2E7B4C008048B2 /* Build configuration list for PBXNativeTarget "Spyfall.temp_caseinsensitive_rename" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				6572228F1F2E7B4C008048B2 /* Debug */,

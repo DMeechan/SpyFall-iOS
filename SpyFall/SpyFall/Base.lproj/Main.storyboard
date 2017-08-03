@@ -14,7 +14,7 @@
         <!--MenuView-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController title="MenuView" id="BYZ-38-t0r" customClass="MenuViewController" customModule="SpyFall" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="MenuView" id="BYZ-38-t0r" customClass="MenuViewController" customModule="Spyfall_temp_caseinsensitive_rename" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
@@ -24,16 +24,16 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Spyfall" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8Et-Ua-21C">
-                                <rect key="frame" x="84" y="188.5" width="207" height="90"/>
+                                <rect key="frame" x="84" y="138.5" width="207" height="90"/>
                                 <fontDescription key="fontDescription" type="system" weight="light" pointSize="75"/>
                                 <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="SE0-Of-tTS" userLabel="Buttons Wrapper">
-                                <rect key="frame" x="96.5" y="365.5" width="182" height="136"/>
+                                <rect key="frame" x="89" y="290.5" width="197.5" height="186"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="clip" translatesAutoresizingMaskIntoConstraints="NO" id="Ys8-wt-hdY" customClass="SquareButton" customModule="SpyFall" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="0.0" width="182" height="58"/>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="clip" translatesAutoresizingMaskIntoConstraints="NO" id="Ys8-wt-hdY" customClass="SquareButton" customModule="Spyfall_temp_caseinsensitive_rename" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="0.0" width="197.5" height="58"/>
                                         <inset key="contentEdgeInsets" minX="40" minY="20" maxX="40" maxY="20"/>
                                         <state key="normal" title="CREATE GAME">
                                             <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
@@ -53,8 +53,14 @@
                                             <action selector="clickCreateGame:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Ksj-OY-OX3"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="clip" translatesAutoresizingMaskIntoConstraints="NO" id="Ik4-xO-hif" customClass="SquareButton" customModule="SpyFall" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="78" width="182" height="58"/>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter Game ID Here" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Hxw-ZW-dAp">
+                                        <rect key="frame" x="0.0" y="78" width="197.5" height="30"/>
+                                        <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                        <textInputTraits key="textInputTraits" keyboardType="numbersAndPunctuation" returnKeyType="go"/>
+                                    </textField>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="clip" translatesAutoresizingMaskIntoConstraints="NO" id="Ik4-xO-hif" customClass="SquareButton" customModule="Spyfall_temp_caseinsensitive_rename" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="128" width="197.5" height="58"/>
                                         <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="15"/>
                                         <inset key="contentEdgeInsets" minX="40" minY="20" maxX="40" maxY="20"/>
                                         <state key="normal" title="JOIN GAME">
@@ -79,6 +85,7 @@
                                 <constraints>
                                     <constraint firstItem="Ik4-xO-hif" firstAttribute="leading" secondItem="SE0-Of-tTS" secondAttribute="leading" id="JPU-eF-zxN"/>
                                     <constraint firstItem="Ys8-wt-hdY" firstAttribute="leading" secondItem="SE0-Of-tTS" secondAttribute="leading" id="Mja-C0-MbO"/>
+                                    <constraint firstAttribute="trailing" secondItem="Hxw-ZW-dAp" secondAttribute="trailing" id="Y1J-52-Kfd"/>
                                     <constraint firstAttribute="trailing" secondItem="Ys8-wt-hdY" secondAttribute="trailing" id="iGs-6p-62v"/>
                                     <constraint firstAttribute="trailing" secondItem="Ik4-xO-hif" secondAttribute="trailing" id="ryU-eA-UDl"/>
                                 </constraints>
@@ -86,13 +93,14 @@
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="SE0-Of-tTS" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" constant="100" id="IYm-iz-POG"/>
+                            <constraint firstItem="SE0-Of-tTS" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" constant="50" id="IYm-iz-POG"/>
                             <constraint firstItem="8Et-Ua-21C" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="fya-Ah-rIU"/>
                             <constraint firstItem="SE0-Of-tTS" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="yhV-q9-prD"/>
-                            <constraint firstItem="8Et-Ua-21C" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" constant="-100" id="zkC-Yr-M1V"/>
+                            <constraint firstItem="8Et-Ua-21C" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" constant="-150" id="zkC-Yr-M1V"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="gameIDField" destination="Hxw-ZW-dAp" id="9jd-NN-Oer"/>
                         <outlet property="joinGameButton" destination="Ik4-xO-hif" id="Kos-Z0-SUR"/>
                         <segue destination="AEr-3C-lAO" kind="show" identifier="segueToLobby" id="oZb-rG-WN7"/>
                     </connections>
@@ -103,7 +111,7 @@
         <!--LobbyView-->
         <scene sceneID="I8a-zK-7y2">
             <objects>
-                <viewController title="LobbyView" id="AEr-3C-lAO" customClass="LobbyViewController" customModule="SpyFall" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="LobbyView" id="AEr-3C-lAO" customClass="LobbyViewController" customModule="Spyfall_temp_caseinsensitive_rename" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="mxd-Xg-pXx"/>
                         <viewControllerLayoutGuide type="bottom" id="xMW-bV-Jil"/>
@@ -112,7 +120,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4q6-Up-fRg" customClass="SquareButton" customModule="SpyFall" customModuleProvider="target">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4q6-Up-fRg" customClass="SquareButton" customModule="Spyfall_temp_caseinsensitive_rename" customModuleProvider="target">
                                 <rect key="frame" x="26" y="599" width="323" height="58"/>
                                 <inset key="contentEdgeInsets" minX="0.0" minY="20" maxX="0.0" maxY="20"/>
                                 <state key="normal" title="CLICK TO READY UP">
@@ -133,7 +141,7 @@
                                     <action selector="clickActionButton:" destination="AEr-3C-lAO" eventType="touchUpInside" id="27g-Z1-KCd"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kPK-ON-HJt" customClass="SquareButton" customModule="SpyFall" customModuleProvider="target">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kPK-ON-HJt" customClass="SquareButton" customModule="Spyfall_temp_caseinsensitive_rename" customModuleProvider="target">
                                 <rect key="frame" x="16" y="25" width="52" height="38"/>
                                 <inset key="contentEdgeInsets" minX="10" minY="10" maxX="10" maxY="10"/>
                                 <state key="normal" title="EXIT">
@@ -162,7 +170,7 @@
                                 </constraints>
                                 <color key="sectionIndexColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="gray" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="PlayerTableViewCell" id="FU1-ro-xvr" customClass="PlayerTableViewCell" customModule="SpyFall" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="gray" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="PlayerTableViewCell" id="FU1-ro-xvr" customClass="PlayerTableViewCell" customModule="Spyfall_temp_caseinsensitive_rename" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="270" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="FU1-ro-xvr" id="2UR-Qp-LMW">
@@ -262,7 +270,7 @@
         <!--RoundView-->
         <scene sceneID="6uM-kK-zaS">
             <objects>
-                <viewController title="RoundView" id="ywm-jC-hAt" customClass="RoundViewController" customModule="SpyFall" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="RoundView" id="ywm-jC-hAt" customClass="RoundViewController" customModule="Spyfall_temp_caseinsensitive_rename" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="N5B-c3-t1q"/>
                         <viewControllerLayoutGuide type="bottom" id="3WQ-AL-bWd"/>
