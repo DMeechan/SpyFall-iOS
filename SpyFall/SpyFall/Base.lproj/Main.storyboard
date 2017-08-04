@@ -24,17 +24,17 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Spyfall" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8Et-Ua-21C">
-                                <rect key="frame" x="84" y="138.5" width="207" height="90"/>
+                                <rect key="frame" x="84.5" y="65" width="207" height="90"/>
                                 <fontDescription key="fontDescription" type="system" weight="light" pointSize="75"/>
                                 <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="SE0-Of-tTS" userLabel="Buttons Wrapper">
-                                <rect key="frame" x="89" y="290.5" width="197.5" height="186"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="Rn7-PD-Hum">
+                                <rect key="frame" x="86.5" y="225" width="202" height="186"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="clip" translatesAutoresizingMaskIntoConstraints="NO" id="Ys8-wt-hdY" customClass="SquareButton" customModule="Spyfall_temp_caseinsensitive_rename" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="0.0" width="197.5" height="58"/>
-                                        <inset key="contentEdgeInsets" minX="40" minY="20" maxX="40" maxY="20"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="202" height="58"/>
+                                        <inset key="contentEdgeInsets" minX="50" minY="20" maxX="50" maxY="20"/>
                                         <state key="normal" title="CREATE GAME">
                                             <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
@@ -53,16 +53,16 @@
                                             <action selector="clickCreateGame:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Ksj-OY-OX3"/>
                                         </connections>
                                     </button>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter Game ID Here" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Hxw-ZW-dAp">
-                                        <rect key="frame" x="0.0" y="78" width="197.5" height="30"/>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter Game ID" textAlignment="center" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="Hxw-ZW-dAp">
+                                        <rect key="frame" x="0.0" y="78" width="202" height="30"/>
                                         <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                        <textInputTraits key="textInputTraits" keyboardType="numbersAndPunctuation" returnKeyType="go"/>
+                                        <textInputTraits key="textInputTraits" keyboardType="numbersAndPunctuation" returnKeyType="go" enablesReturnKeyAutomatically="YES"/>
                                     </textField>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="clip" translatesAutoresizingMaskIntoConstraints="NO" id="Ik4-xO-hif" customClass="SquareButton" customModule="Spyfall_temp_caseinsensitive_rename" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="128" width="197.5" height="58"/>
+                                        <rect key="frame" x="0.0" y="128" width="202" height="58"/>
                                         <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="15"/>
-                                        <inset key="contentEdgeInsets" minX="40" minY="20" maxX="40" maxY="20"/>
+                                        <inset key="contentEdgeInsets" minX="50" minY="20" maxX="50" maxY="20"/>
                                         <state key="normal" title="JOIN GAME">
                                             <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
@@ -82,21 +82,14 @@
                                         </connections>
                                     </button>
                                 </subviews>
-                                <constraints>
-                                    <constraint firstItem="Ik4-xO-hif" firstAttribute="leading" secondItem="SE0-Of-tTS" secondAttribute="leading" id="JPU-eF-zxN"/>
-                                    <constraint firstItem="Ys8-wt-hdY" firstAttribute="leading" secondItem="SE0-Of-tTS" secondAttribute="leading" id="Mja-C0-MbO"/>
-                                    <constraint firstAttribute="trailing" secondItem="Hxw-ZW-dAp" secondAttribute="trailing" id="Y1J-52-Kfd"/>
-                                    <constraint firstAttribute="trailing" secondItem="Ys8-wt-hdY" secondAttribute="trailing" id="iGs-6p-62v"/>
-                                    <constraint firstAttribute="trailing" secondItem="Ik4-xO-hif" secondAttribute="trailing" id="ryU-eA-UDl"/>
-                                </constraints>
                             </stackView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="SE0-Of-tTS" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" constant="50" id="IYm-iz-POG"/>
-                            <constraint firstItem="8Et-Ua-21C" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="fya-Ah-rIU"/>
-                            <constraint firstItem="SE0-Of-tTS" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="yhV-q9-prD"/>
-                            <constraint firstItem="8Et-Ua-21C" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" constant="-150" id="zkC-Yr-M1V"/>
+                            <constraint firstItem="8Et-Ua-21C" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="45" id="0bF-vz-qqE"/>
+                            <constraint firstItem="8Et-Ua-21C" firstAttribute="centerX" secondItem="Rn7-PD-Hum" secondAttribute="centerX" id="TtH-UA-NAO"/>
+                            <constraint firstItem="Rn7-PD-Hum" firstAttribute="top" secondItem="8Et-Ua-21C" secondAttribute="bottom" constant="70" id="hRC-7J-TVu"/>
+                            <constraint firstItem="Rn7-PD-Hum" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="hqL-6c-FZ5"/>
                         </constraints>
                     </view>
                     <connections>
@@ -107,6 +100,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="24.800000000000001" y="34.632683658170919"/>
         </scene>
         <!--LobbyView-->
         <scene sceneID="I8a-zK-7y2">

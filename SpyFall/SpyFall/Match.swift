@@ -71,11 +71,11 @@ class Match {
     players[spy].spy = true
     unassignedPlayers.remove(at: spy)
     
-    // Find Location object
+    // Find Location object in array
     var found: Bool = false
     var i = 0
     var location: Location?
-    while found == false || i == Location.shared.count {
+    while found == false && i < Location.shared.count {
       if Location.shared[i].name == locationID {
         location = Location.shared[i]
         found = true
@@ -97,6 +97,8 @@ class Match {
     if i < (players.count - 1) {
       print("FATAL ERROR: only was able to give out \(i + 1) roles (i = \(i) to \(players.count) players!)")
     }
+    
+    DataManager.shared.write()
     
   }
   

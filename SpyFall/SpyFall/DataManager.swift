@@ -57,37 +57,62 @@ class DataManager {
   }
   
   func write() {
-    
-    ref?.child("matches").child(match.ID).setValue(match.toDictionary())
+    let matchDict = match.toDictionary()
+    print("MATCH DICT:")
+    print(matchDict)
+    ref?.child("matches").child(match.ID).setValue(matchDict)
     
   }
   
-  func writeUser() {
-    // Scan through players array to find the index of the current user
-    var found: Bool = false
-    print("Scanning through players array to add player")
-    
-    var i = 0
-    
-    while i < match.players.count && found == false {
-      if match.players[i].name == user.name {
-        found = true
+  func checkForDuplicateUser() {
+    for player in match.players {
+      if player.name == user.name {
+        user.name += "2"
       }
-      i += 1
-      
     }
     
+    match.players.append(user)
+  }
+  
+  func writeUser() {
+    let index = getUserIndex()
     // Now overwrite that player index with the updated user data
     
-    ref?.child("matches").child(match.ID).child("players").child(String(i)).setValue(user.toDictionary())
+    ref?.child("matches").child(match.ID).child("players").child(String(index)).setValue(user.toDictionary())
     
-    match.players.append(user)
+  }
+  
+  func removeUser() {
+    let index = getUserIndex()
+    match.players.remove(at: index)
+    write()
     
   }
   
   func removeMatch() {
     ref?.child("matches").child(match.ID).removeValue()
   }
+  
+  func getUserIndex() -> Int {
+    // Scan through players array to find the index of user
+    var found: Bool = false
+    var i = 0
+    
+    while ((i < match.players.count) && (found == false)) {
+      // While loop seems to be dodgy for unknown reasons so need this to prevent array out of bounds error
+      if i < match.players.count {
+        if match.players[i].name == user.name {
+          found = true
+        }
+        
+        i += 1
+        
+      }
+    }
+    return i
+  }
+  
+
   
   
   

@@ -17,11 +17,13 @@ class LobbyViewController: UIViewController, UITableViewDelegate, UITableViewDat
     super.viewDidLoad()
     
     if userIsHost {
-      // match.add(player: Player(name: "Temp1"), host: false)
-      // match.add(player: Player(name: "Temp2"), host: false)
-      // match.add(player: Player(name: "Temp3"), host: false)
+      match.add(player: Player(name: "Temp1"), host: false)
+      match.add(player: Player(name: "Temp2"), host: false)
+      match.add(player: Player(name: "Temp3"), host: false)
       
     } else {
+      // User needs to get added to the game
+      DataManager.shared.checkForDuplicateUser()
       DataManager.shared.writeUser()
       
     }
@@ -51,14 +53,16 @@ class LobbyViewController: UIViewController, UITableViewDelegate, UITableViewDat
     gameIDLabel?.text = "Game ID: \(match.ID)"
     
     // Update match status
-    if match.status == 0 {
-      gameStatusLabel.text = "Waiting for players to ready up..."
+    if match.status != 0 {
+      print("Error, should not be in lobby if game status > 0")
       
-    } else if match.status == 1 {
-      gameStatusLabel.text = "Waiting for host to start game..."
+    }
+    
+    if allPlayersReady() {
+      gameStatusLabel.text = "Waiting for host to start..."
       
     } else {
-      print("Error, should not be in lobby if game status > 1")
+      gameStatusLabel.text = "Waiting for players to ready up..."
       
     }
     
@@ -167,6 +171,10 @@ class LobbyViewController: UIViewController, UITableViewDelegate, UITableViewDat
     
     if userIsHost {
       DataManager.shared.removeMatch()
+      
+    } else {
+      DataManager.shared.removeUser()
+      
     }
     
   }

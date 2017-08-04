@@ -18,7 +18,7 @@ class MenuViewController: UIViewController {
     super.viewDidLoad()
     gameIDField.isHidden = true
     resetJoinGameButton()
-    DataManager.shared.user.name = "yay"
+    DataManager.shared.user.name = "dan :("
     
     // Import locations
     Location.getSampleLocations()
@@ -29,6 +29,7 @@ class MenuViewController: UIViewController {
     // Switch to lobby
     hostingGame = true
     DataManager.shared.match = Match(host: DataManager.shared.user)
+    DataManager.shared.write()
     performSegue(withIdentifier: "segueToLobby", sender: self)
     
   }
@@ -39,11 +40,13 @@ class MenuViewController: UIViewController {
     joinGameButton.setTitle("FINDING GAME...", for: .normal)
     joinGameButton.isEnabled = false
     
-    // Join game if the access code is right
-    // gameIDToJoin = "0647"
+    // Use the entered gameID
     gameIDToJoin = (gameIDField.text ?? "")
+    
     DataManager.shared.read(gameID: gameIDToJoin)
     
+    // Need to use a timer because otherwise it doesn't work
+    // (it takes a split second to check database which is run on a separate thread)
     Timer.scheduledTimer(timeInterval: 1, target:self, selector: #selector(self.joinGameIfExists), userInfo: nil, repeats: false)
     
   }
@@ -95,15 +98,44 @@ class MenuViewController: UIViewController {
     createGame()
   }
   
+  func isGameIDValid(id: String) -> Bool {
+    // Check the ID contains only 4 chars and all are numbers
+    if id.characters.count == 4 {
+      if CharacterSet.decimalDigits.isSuperset(of: CharacterSet(charactersIn: id)) {
+        return true
+      }
+      
+    }
+    return false
+    
+  }
+  
   @IBAction func clickJoinGame(_ sender: Any) {
+    // Check if the text field to enter game ID is visible first
     if joiningGame == true {
-      tryJoinGame()
+      if isGameIDValid(id: gameIDField.text ?? "") {
+        tryJoinGame()
+      } else {
+        // User entered invalid gameID
+        print("User entered an invalid gameID: \(gameIDField.text ?? "")")
+        joinGameButton.setTitle("INVALID ID", for: .normal)
+        Timer.scheduledTimer(timeInterval: 2, target:self, selector: #selector(self.resetJoinGameButton), userInfo: nil, repeats: false)
+      }
+      
+      gameIDField.text = ""
+      
       
     } else {
       gameIDField.isHidden = false
       joiningGame = true
       
     }
+  }
+  
+  // Make it so keyboard disappears on touching outsid textfield
+  
+  override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+    self.view.endEditing(true) //This will hide the keyboard
   }
   
 }
