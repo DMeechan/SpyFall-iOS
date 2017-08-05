@@ -18,7 +18,7 @@ class MenuViewController: UIViewController {
     super.viewDidLoad()
     gameIDField.isHidden = true
     resetJoinGameButton()
-    DataManager.shared.user.name = "dan :("
+    DataManager.shared.user.name = "Dan"
     
     // Import locations
     Location.getSampleLocations()

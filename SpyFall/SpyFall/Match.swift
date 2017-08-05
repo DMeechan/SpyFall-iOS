@@ -18,9 +18,9 @@ class Match {
   var firstToAsk: String = ""
   
   // For status:
-  // 0 = lobby (waiting for players)
-  // 1 = lobby (waiting for host)
-  // 2 = room (playing)
+  // 0 = lobby (waiting)
+  // 1 = room (playing)
+  // 2 = room (premature voting)
   // 3 = room (match ended; in 1 min voting)
   // 4 = room (match ended; voting failed; spy is guessing location)
   // 5 = match over; closing game
@@ -57,7 +57,7 @@ class Match {
   }
   
   func start() {
-    self.status = 3
+    self.status = 1
     // TODO: Update status - make sure it's correct
     
     // Add each player to the unassignedPlayers array
@@ -73,29 +73,30 @@ class Match {
     
     // Find Location object in array
     var found: Bool = false
-    var i = 0
+    var locationIndex = 0
     var location: Location?
-    while found == false && i < Location.shared.count {
-      if Location.shared[i].name == locationID {
-        location = Location.shared[i]
+    while found == false && locationIndex < Location.shared.count {
+      if Location.shared[locationIndex].name == locationID {
+        location = Location.shared[locationIndex]
         found = true
       }
-      i += 1
+      locationIndex += 1
     }
     
     // Go through and assign each player (except spy) a random role
+    var roleIndex = 0
     while unassignedPlayers.count > 0 {
       let random:Int = Int(arc4random_uniform(UInt32(unassignedPlayers.count)))
       
-      unassignedPlayers[random].role = (location?.roles[i])!
+      unassignedPlayers[random].role = (location?.roles[roleIndex])!
       
-      i += 1
+      roleIndex += 1
       unassignedPlayers.remove(at: random)
     }
     
     // If fewer roles have been given out than there are players (excl. spy ofc), then big error potentially
-    if i < (players.count - 1) {
-      print("FATAL ERROR: only was able to give out \(i + 1) roles (i = \(i) to \(players.count) players!)")
+    if roleIndex < (players.count - 1) {
+      print("FATAL ERROR: only was able to give out \(roleIndex + 1) roles (i = \(roleIndex) to \(players.count) players!)")
     }
     
     DataManager.shared.write()

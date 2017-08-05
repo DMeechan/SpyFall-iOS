@@ -24,13 +24,13 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Spyfall" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8Et-Ua-21C">
-                                <rect key="frame" x="84.5" y="65" width="207" height="90"/>
+                                <rect key="frame" x="84.5" y="50" width="207" height="90"/>
                                 <fontDescription key="fontDescription" type="system" weight="light" pointSize="75"/>
                                 <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="Rn7-PD-Hum">
-                                <rect key="frame" x="86.5" y="225" width="202" height="186"/>
+                                <rect key="frame" x="86.5" y="170" width="202" height="186"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="clip" translatesAutoresizingMaskIntoConstraints="NO" id="Ys8-wt-hdY" customClass="SquareButton" customModule="Spyfall_temp_caseinsensitive_rename" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="202" height="58"/>
@@ -86,16 +86,16 @@
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="8Et-Ua-21C" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="45" id="0bF-vz-qqE"/>
+                            <constraint firstItem="8Et-Ua-21C" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="30" id="0bF-vz-qqE"/>
                             <constraint firstItem="8Et-Ua-21C" firstAttribute="centerX" secondItem="Rn7-PD-Hum" secondAttribute="centerX" id="TtH-UA-NAO"/>
-                            <constraint firstItem="Rn7-PD-Hum" firstAttribute="top" secondItem="8Et-Ua-21C" secondAttribute="bottom" constant="70" id="hRC-7J-TVu"/>
+                            <constraint firstItem="Rn7-PD-Hum" firstAttribute="top" secondItem="8Et-Ua-21C" secondAttribute="bottom" constant="30" id="hRC-7J-TVu"/>
                             <constraint firstItem="Rn7-PD-Hum" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="hqL-6c-FZ5"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="gameIDField" destination="Hxw-ZW-dAp" id="9jd-NN-Oer"/>
                         <outlet property="joinGameButton" destination="Ik4-xO-hif" id="Kos-Z0-SUR"/>
-                        <segue destination="AEr-3C-lAO" kind="show" identifier="segueToLobby" id="oZb-rG-WN7"/>
+                        <segue destination="AEr-3C-lAO" kind="showDetail" identifier="segueToLobby" action="showViewController:sender:" id="oZb-rG-WN7"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -255,6 +255,7 @@
                         <outlet property="gameStatusLabel" destination="g4O-0g-GRm" id="6QO-NC-B1N"/>
                         <outlet property="playersTableView" destination="WXK-sn-HR6" id="GvC-UW-fPc"/>
                         <segue destination="BYZ-38-t0r" kind="show" identifier="segueToMenu" id="J60-u1-36o"/>
+                        <segue destination="ywm-jC-hAt" kind="show" identifier="segueToRound" id="Eso-Cz-TKL"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lRe-1C-DJT" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -273,8 +274,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="Qm5-id-x3r" userLabel="Player Info Wrapper">
-                                <rect key="frame" x="104" y="54" width="167" height="41"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" axis="vertical" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="Qm5-id-x3r" userLabel="Player Info Wrapper">
+                                <rect key="frame" x="104" y="54" width="167" height="91.5"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Location: Ocean Liner" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Fdp-60-yNb">
@@ -284,26 +285,38 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Your role: Captain" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="soz-Wx-uaW">
-                                        <rect key="frame" x="0.0" y="20.5" width="167" height="20.5"/>
+                                        <rect key="frame" x="0.0" y="35.5" width="167" height="20.5"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="8:00" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KsA-YS-YXn">
+                                        <rect key="frame" x="0.0" y="71" width="167" height="20.5"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
                             </stackView>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" restorationIdentifier="PlayersTableView" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="F8m-ZV-Kbb">
-                                <rect key="frame" x="78" y="123" width="240" height="128"/>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" restorationIdentifier="LocationsTableView" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="viY-kM-Zc8">
+                                <rect key="frame" x="78" y="351" width="240" height="128"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </tableView>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" restorationIdentifier="LocationsTableView" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="viY-kM-Zc8">
-                                <rect key="frame" x="78" y="283" width="240" height="128"/>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" restorationIdentifier="PlayersTableView" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="F8m-ZV-Kbb">
+                                <rect key="frame" x="78" y="168" width="240" height="128"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
+                    <connections>
+                        <outlet property="locationLabel" destination="Fdp-60-yNb" id="FHD-rA-rbE"/>
+                        <outlet property="roleLabel" destination="soz-Wx-uaW" id="kzT-wW-W9q"/>
+                        <outlet property="timerLabel" destination="KsA-YS-YXn" id="aUU-0q-kek"/>
+                        <segue destination="AEr-3C-lAO" kind="show" identifier="segueBackToLobby" id="7wU-yD-kpd"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="z2s-0T-QFD" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -313,4 +326,7 @@
     <resources>
         <image name="cross" width="32" height="32"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="oZb-rG-WN7"/>
+    </inferredMetricsTieBreakers>
 </document>

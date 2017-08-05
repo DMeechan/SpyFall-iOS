@@ -58,8 +58,6 @@ class DataManager {
   
   func write() {
     let matchDict = match.toDictionary()
-    print("MATCH DICT:")
-    print(matchDict)
     ref?.child("matches").child(match.ID).setValue(matchDict)
     
   }
@@ -79,6 +77,12 @@ class DataManager {
     // Now overwrite that player index with the updated user data
     
     ref?.child("matches").child(match.ID).child("players").child(String(index)).setValue(user.toDictionary())
+    
+  }
+  
+  func getUser() {
+    let index = getUserIndex()
+    user = match.players[index]
     
   }
   
@@ -103,12 +107,23 @@ class DataManager {
       if i < match.players.count {
         if match.players[i].name == user.name {
           found = true
+          
+        } else {
+          i += 1
+          
         }
         
-        i += 1
         
       }
     }
+    
+    if i == match.players.count {
+      print("WARNING: getUserIndex() ATTEMPTED TO RETURN INDEX: \(i) FOR ARRAY SIZE: \(match.players.count)")
+      i -= 1
+      print("IT HAS BEEN REDUCED TO: \(i)")
+      
+    }
+    
     return i
   }
   

@@ -50,13 +50,18 @@ class LobbyViewController: UIViewController, UITableViewDelegate, UITableViewDat
     // Update players table
     self.playersTableView.reloadData()
     
-    gameIDLabel?.text = "Game ID: \(match.ID)"
-    
     // Update match status
-    if match.status != 0 {
-      print("Error, should not be in lobby if game status > 0")
+    if match.status == 1 {
+      // Match has now moved to Round phase
+      DataManager.shared.getUser()
+      switchToRoundView()
+      
+    } else if match.status > 1 {
+      print("Error, should not be in lobby if game status > 1")
       
     }
+    
+    gameIDLabel?.text = "Game ID: \(match.ID)"
     
     if allPlayersReady() {
       gameStatusLabel.text = "Waiting for host to start..."
@@ -93,6 +98,10 @@ class LobbyViewController: UIViewController, UITableViewDelegate, UITableViewDat
       
     }
     
+  }
+  
+  func switchToRoundView() {
+    performSegue(withIdentifier: "segueToRound", sender: self)
   }
   
   func allPlayersReady() -> Bool {
