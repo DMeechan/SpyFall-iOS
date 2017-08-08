@@ -103,6 +103,35 @@ class Match {
     
   }
   
+  func close() {
+    self.status = 0
+    for player in players {
+      player.spy = false
+      player.role = ""
+      
+      
+      if player.host {
+        player.ready = true
+        
+      } else {
+        player.ready = false
+      }
+      
+    }
+    
+    DataManager.shared.write()
+    
+  }
+  
+  func close() {
+    
+  }
+  
+  func leave() {
+    DataManager.shared.removeUser()
+    
+  }
+  
   func listPlayers() {
     print("Players in match \(ID):")
     for player in players {

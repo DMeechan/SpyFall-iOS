@@ -176,15 +176,15 @@ class LobbyViewController: UIViewController, UITableViewDelegate, UITableViewDat
   }
   
   @IBAction func clickExit(_ sender: Any) {
-    performSegue(withIdentifier: "segueToMenu", sender: self)
-    
     if userIsHost {
-      DataManager.shared.removeMatch()
+      DataManager.shared.match.close()
       
     } else {
-      DataManager.shared.removeUser()
+      DataManager.shared.match.leave()
       
     }
+    
+    performSegue(withIdentifier: "segueToMenu", sender: self)
     
   }
   
