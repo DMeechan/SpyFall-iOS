@@ -9,10 +9,12 @@
 import UIKit
 
 class RoundViewController: UIViewController {
-  // var timer: Timer
+  var timer: Timer
+  var matchTime: Int = 8 * 60
   
   override func viewDidLoad() {
     super.viewDidLoad()
+    
     if DataManager.shared.user.spy {
       // User is the spy
       locationLabel.text = "Location: ???"
@@ -25,16 +27,46 @@ class RoundViewController: UIViewController {
       
     }
     
+    // Subtract any lost seconds due to calculation from match time
+    matchTime  = matchTime - DataManager.shared.match.secsLostSinceStart()
+    
+    fireTimer()
+    
   }
   
-  func start() {
+  func fireTimer() {
+    if timer.isValid {
+      timer.invalidate()
+    }
+    
+    timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(RoundViewController.runTimer), userInfo: nil, repeats: true)
+  }
+  
+  func runTimer() {
+    
+    if DataManager.shared.match.status == 1 {
+      // Check match status = 1 so it should be incrementing timer
+      
+      matchTime -= 1
+      let totalSecs = matchTime
+      
+      let mins = floor(Double(totalSecs / 60))
+      let secs = totalSecs % 60
+      
+      timerLabel.text = String(format: "%02d", Int(mins)) + ":" + String(format: "%02d", Int(secs))
+      
+    }
     
   }
   
   func updateUI() {
     let status = DataManager.shared.match.status
     
-    if status != 1 {
+    if status == 1 {
+      // Status = normal; continue Round as usual
+      
+      
+    } else {
       // Game isn't in standard Round status; check to see which one and act accordingly
       
       if status == 0 {
@@ -69,9 +101,6 @@ class RoundViewController: UIViewController {
         performSegue(withIdentifier: "segueBackToMenu", sender: self)
         
       }
-      
-    } else {
-      // Status == 1; so continue Round as usual
       
       
     }

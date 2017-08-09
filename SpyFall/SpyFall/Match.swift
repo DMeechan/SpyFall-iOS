@@ -99,7 +99,32 @@ class Match {
       print("FATAL ERROR: only was able to give out \(roleIndex + 1) roles (i = \(roleIndex) to \(players.count) players!)")
     }
     
+    // Find start time of match in milliseconds
+    let startDate = Date()
+    
+    // Need to *1000 because it's in seconds by default
+    let startDateInMilliseconds = startDate.timeIntervalSince1970 * 1000
+    
+    self.startTime = startDateInMilliseconds
+    
     DataManager.shared.write()
+    
+  }
+  
+  func secsLostSinceStart() -> Int {
+    
+    // All done in seconds with milliseconds in decimal places
+    let startTimeSecs = Double(self.startTime) / 1000
+    
+    let currentDate = Date()
+    let currentTimeSecs = currentDate.timeIntervalSince1970
+    
+    let timeLost = currentTimeSecs - startTimeSecs
+    
+    // Now convert to pure int seconds
+    let timeLostInt = Int(timeLost)
+    
+    return timeLostInt
     
   }
   
