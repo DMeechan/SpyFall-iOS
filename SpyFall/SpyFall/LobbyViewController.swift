@@ -16,12 +16,24 @@ class LobbyViewController: UIViewController, UITableViewDelegate, UITableViewDat
   override func viewDidLoad() {
     super.viewDidLoad()
     
-    if userIsHost {
+    let addFakePlayers = true
+    
+    if userIsHost && addFakePlayers {
       match.add(player: Player(name: "Temp1"), host: false)
       match.add(player: Player(name: "Temp2"), host: false)
       match.add(player: Player(name: "Temp3"), host: false)
+      match.add(player: Player(name: "Temp4"), host: false)
+      match.add(player: Player(name: "Temp5"), host: false)
+      match.add(player: Player(name: "Temp6"), host: false)
+      match.add(player: Player(name: "Temp7"), host: false)
       
-    } else {
+      for player in match.players {
+        player.ready = true
+      }
+      
+      DataManager.shared.write()
+      
+    } else if !userIsHost {
       // User needs to get added to the game
       DataManager.shared.checkForDuplicateUser()
       DataManager.shared.writeUser()
@@ -32,11 +44,11 @@ class LobbyViewController: UIViewController, UITableViewDelegate, UITableViewDat
     
     // DataManager.shared.write()
     
-    updateUI()
-    
     if userIsHost {
       DataManager.shared.read()
     }
+    
+    updateUI()
     
     
     // Do any additional setup after loading the view.
