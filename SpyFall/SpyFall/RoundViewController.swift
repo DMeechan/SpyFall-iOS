@@ -9,7 +9,7 @@
 import UIKit
 
 class RoundViewController: UIViewController {
-  var timer: Timer
+  var timer: Timer = Timer()
   var matchTime: Int = 8 * 60
   
   override func viewDidLoad() {
@@ -31,6 +31,8 @@ class RoundViewController: UIViewController {
     matchTime  = matchTime - DataManager.shared.match.secsLostSinceStart()
     
     fireTimer()
+    
+    updateUI()
     
   }
   
@@ -64,7 +66,7 @@ class RoundViewController: UIViewController {
     
     if status == 1 {
       // Status = normal; continue Round as usual
-      
+      reloadTables()
       
     } else {
       // Game isn't in standard Round status; check to see which one and act accordingly
@@ -109,11 +111,22 @@ class RoundViewController: UIViewController {
     
   }
   
+  func reloadTables() {
+    print("Reloading player table data")
+    playersTableLeft.reloadData()
+    playersTableRight.reloadData()
+    
+    print("Reloading loction table data")
+    locationsTableLeft.reloadData()
+    locationsTableRight.reloadData()
+    
+  }
+  
   @IBAction func clickExit(_ sender: Any) {
     if DataManager.shared.user.host {
       // User is host
       print("Host is ending match")
-      DataManager.shared.match.end()
+      DataManager.shared.match.close()
       print("Returning to lobby")
       performSegue(withIdentifier: "segueBackToLobby", sender: self)
       
@@ -129,10 +142,93 @@ class RoundViewController: UIViewController {
     }
     
     
+  }
+  
+  // MARK: Managing TableViews
+  
+  func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    print("Evaluating table")
+    
+    if tableView == self.playersTableLeft || tableView == self.playersTableRight {
+      // Use player cells
+      print("-> Using player table")
+      
+      let cellIdentifier = "PlayerRoundTableViewCell"
+      guard let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as? PlayerRoundTableViewCell else {
+        fatalError("The dequeued cell is not an instance of PlayerRoundTableViewCell")
+      }
+      
+      let player = DataManager.shared.match.players[indexPath.row]
+      
+      cell.nameLabel?.text = player.name
+      
+      return cell
+      
+    } else if tableView == self.locationsTableLeft || tableView == self.locationsTableRight {
+      // Use location cells
+      print("-> Using location table")
+      
+      let cellIdentifier = "LocationRoundTableViewCell"
+      guard let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as? LocationRoundTableViewCell else {
+        fatalError("The dequeued cell is not an instance of LocationRoundTableViewCell")
+      }
+      
+      let location = Location.shared[indexPath.row]
+      
+      cell.nameLabel?.text = location.name
+      
+      return cell
+      
+    } else {
+      print("FATAL ERROR: TableView not recognised in RoundView: ", tableView)
+      let cell = UITableViewCell()
+      return cell
+      
+    }
+    
     
     
   }
   
+  func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    print("Checking table count")
+    if tableView == self.playersTableLeft {
+      print("-> Using player table left")
+      return DataManager.shared.match.players.count / 2
+      
+    } else if tableView == self.playersTableRight {
+      // Use floor to round it down; so if the player count is odd, it will output the correct amount
+      print("-> Using player table right")
+      return Int(floor(Double(DataManager.shared.match.players.count / 2)))
+      
+    } else if tableView == self.locationsTableLeft {
+      print("-> Using location table left")
+      return Location.shared.count / 2
+      
+    } else if tableView == self.locationsTableRight {
+      // Use floor to round it down; so if the location count is odd, it will output the correct amount
+      print("-> Using location table right")
+      return Int(floor(Double(Location.shared.count / 2)))
+      
+    } else {
+      print("FATAL ERROR: Using invalid TableView: ", tableView)
+      return 1
+      
+    }
+    
+  }
+  
+  func numberOfSections(in tableView: UITableView) -> Int {
+    print("Outputting num of table sections")
+    return 1
+    
+  }
+  
+  @IBOutlet weak var playersTableLeft: UITableView!
+  @IBOutlet weak var playersTableRight: UITableView!
+  
+  @IBOutlet weak var locationsTableLeft: UITableView!
+  @IBOutlet weak var locationsTableRight: UITableView!
   
   @IBOutlet weak var locationLabel: UILabel!
   @IBOutlet weak var roleLabel: UILabel!

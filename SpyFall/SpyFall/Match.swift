@@ -105,13 +105,21 @@ class Match {
     // Need to *1000 because it's in seconds by default
     let startDateInMilliseconds = startDate.timeIntervalSince1970 * 1000
     
-    self.startTime = startDateInMilliseconds
+    self.startTime = Int(startDateInMilliseconds)
     
     DataManager.shared.write()
     
   }
   
   func secsLostSinceStart() -> Int {
+    
+    // TODO: Client timer delays
+    // Currently there's a ~0.5 second delay between clients' timers
+    // While this delay isn't ideal, the current solution is probably-
+    // -better than polling Firebase every second for timer updates!
+    // So will keep it for now
+    // I've done some checking in Playground, and this secsLostSinceStart()-
+    // -function seems to work perfectly, so the problem likely lies elsewhere
     
     // All done in seconds with milliseconds in decimal places
     let startTimeSecs = Double(self.startTime) / 1000
@@ -124,6 +132,7 @@ class Match {
     // Now convert to pure int seconds
     let timeLostInt = Int(timeLost)
     
+    print("Time lost since match start: \(timeLostInt)")
     return timeLostInt
     
   }
@@ -147,10 +156,7 @@ class Match {
     DataManager.shared.write()
     
   }
-  
-  func close() {
-    
-  }
+
   
   func leave() {
     DataManager.shared.removeUser()
