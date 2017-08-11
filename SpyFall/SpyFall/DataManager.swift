@@ -21,6 +21,8 @@ class DataManager {
   var match: Match
   var user: Player
   
+  var selectedLocationValues: [Int] = []
+  
   init() {
     // Set up link to Firebase database
     print("Creating link to Firebase database")

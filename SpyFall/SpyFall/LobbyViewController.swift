@@ -16,7 +16,7 @@ class LobbyViewController: UIViewController, UITableViewDelegate, UITableViewDat
   override func viewDidLoad() {
     super.viewDidLoad()
     
-    let addFakePlayers = true
+    let addFakePlayers = false
     
     if userIsHost && addFakePlayers {
       match.add(player: Player(name: "Temp1"), host: false)

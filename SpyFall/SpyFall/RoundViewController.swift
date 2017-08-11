@@ -34,6 +34,8 @@ class RoundViewController: UIViewController, UITableViewDelegate, UITableViewDat
     
     updateUI()
     
+    DataManager.shared.selectedLocationValues = []
+    
   }
   
   func fireTimer() {
@@ -159,7 +161,8 @@ class RoundViewController: UIViewController, UITableViewDelegate, UITableViewDat
       }
       
       let player = DataManager.shared.match.players[pos]
-      cell.nameLabel?.text = player.name
+      
+      cell.nameLabel?.attributedText = getStrikeThrough(player.name)
       
       return cell
       
@@ -188,7 +191,14 @@ class RoundViewController: UIViewController, UITableViewDelegate, UITableViewDat
       }
       
       let location = Location.shared[pos]
-      cell.nameLabel?.text = location.name
+      
+      if isLocationSelected(pos) {
+        cell.nameLabel?.attributedText = getStrikeThrough(location.name)
+        
+      } else {
+        cell.nameLabel?.text = location.name
+        
+      }
       
       return cell
       
@@ -198,7 +208,13 @@ class RoundViewController: UIViewController, UITableViewDelegate, UITableViewDat
     let cell = UITableViewCell()
     return cell
     
+  }
+  
+  func getStrikeThrough(input: String) -> NSMutableAttributedString {
+    let formattedString: NSMutableAttributedString = NSMutableAttributedString(string: input)
+    formattedString.addAttribute(NSStrikethroughStyleAttributeName, value: 2, range: NSMakeRange(0, formattedString.length))
     
+    return formattedString
     
   }
   
@@ -261,7 +277,96 @@ class RoundViewController: UIViewController, UITableViewDelegate, UITableViewDat
     
   }
   
-  // MARK: Manage UI elements
+  func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    print("Table cell has been clicked...")
+    
+    if tableView == self.playersTableLeft {
+      print("-> Clicked player table left")
+      
+      // Vote for: let player = DataManager.shared.match.players[indexPath.row]
+      playersTableLeft.reloadData()
+      
+      
+    } else if tableView == self.playersTableRight {
+      print("-> Clicked player table right")
+      
+      // Vote for: DataManager.shared.match.players[indexPath.row + roundInt(roundUp: true, array: DataManager.shared.match.players, dividor: 2.0)]
+      playersTableRight.reloadData()
+      
+    } else if tableView == self.locationsTableLeft {
+      print("-> Clicked location table left")
+      
+      // Strikethrough: Location.shared[indexPath.row]
+      
+      let pos = indexPath.row
+      if isLocationSelected(pos) {
+        DataManager.shared.selectedLocationValues.append(pos)
+      } else {
+        removeLocationSelection()
+      }
+      
+      locationsTableLeft.reloadData()
+      
+    } else if tableView == self.locationsTableRight {
+      print("-> Clicked location table right")
+      
+      // Strikethrough: Location.shared[indexPath.row + roundInt(roundUp: true, array: Location.shared, dividor: 2.0)]
+      
+      // Get pos of table cell and then check to see if selected
+      // If selected: remove it
+      // if not selected: select it
+      
+      let pos = indexPath.row + roundInt(roundUp: true, array: Location.shared, dividor: 2.0)
+      
+      if isLocationSelected(pos) {
+        DataManager.shared.selectedLocationValues.append(pos)
+      } else {
+        removeLocationSelection()
+      }
+      
+      locationsTableRight.reloadData()
+      
+      // DataManager.shared.selectedLocationValues.append(indexPath.row + roundInt(roundUp: true, array: Location.shared, dividor: 2.0))
+      
+      
+    } else {
+      print("FATAL ERROR: Using invalid TableView when processing Cell click: ", tableView)
+      
+    }
+    
+    
+  }
+  
+  func isLocationSelected(index: Int) -> Bool {
+    // Iterate through selectedLocationValues and see if the passed index is already in there
+    for value in DataManager.shared.selectedLocationValues {
+      if value == index {
+        return true
+        
+      }
+    }
+    return false
+    
+  }
+  
+  func removeLocationSelection(index: Int) {
+    var i = 0
+    var found: Bool = false
+    
+    while (i < DataManager.shared.selectedLocationValues.count && found == false) {
+      if DataManager.shared.selectedLocationValues[i] == index {
+        DataManager.shared.selectedLocationValues.remove(at: i)
+        found = true
+        
+      } else {
+        i += 1
+        
+      }
+    }
+    
+  }
+  
+  // MARK: Button clicks
   
   @IBAction func clickExit(_ sender: Any) {
     if DataManager.shared.user.host {
@@ -352,7 +457,7 @@ class RoundViewController: UIViewController, UITableViewDelegate, UITableViewDat
       })
       
     } else {
-
+      
       UIView.animate(withDuration: 0.2, animations:  {
         self.locationsTableLeft.isHidden = true
         self.locationsTableRight.isHidden = true

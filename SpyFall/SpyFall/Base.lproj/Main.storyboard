@@ -162,7 +162,7 @@
                                 </connections>
                             </button>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" sectionIndexMinimumDisplayRowCount="8" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="WXK-sn-HR6">
-                                <rect key="frame" x="25" y="175" width="270" height="305"/>
+                                <rect key="frame" x="25" y="105.5" width="270" height="374.5"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="270" id="pK9-pa-ytQ"/>
@@ -210,26 +210,26 @@
                                     <outlet property="delegate" destination="AEr-3C-lAO" id="RU5-ur-673"/>
                                 </connections>
                             </tableView>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="xUX-9d-beP" userLabel="Upper wrapper">
-                                <rect key="frame" x="30" y="75" width="260.5" height="80"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="xUX-9d-beP" userLabel="Upper wrapper">
+                                <rect key="frame" x="69.5" y="30" width="181" height="55.5"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Waiting for players..." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="g4O-0g-GRm">
-                                        <rect key="frame" x="0.0" y="0.0" width="260.5" height="38.5"/>
-                                        <fontDescription key="fontDescription" type="system" weight="ultraLight" pointSize="32"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="181" height="26.5"/>
+                                        <fontDescription key="fontDescription" type="system" weight="ultraLight" pointSize="22"/>
                                         <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="8TD-wu-bca" userLabel="Game ID Wrapper">
-                                        <rect key="frame" x="32" y="48.5" width="197" height="31.5"/>
+                                        <rect key="frame" x="10.5" y="31.5" width="160" height="24"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Game ID: 0000" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="f2v-Be-jSI">
-                                                <rect key="frame" x="0.0" y="0.0" width="165" height="31.5"/>
-                                                <fontDescription key="fontDescription" type="system" weight="ultraLight" pointSize="26"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="128" height="24"/>
+                                                <fontDescription key="fontDescription" type="system" weight="ultraLight" pointSize="20"/>
                                                 <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="contactAdd" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lC7-hN-Zbi">
-                                                <rect key="frame" x="175" y="0.0" width="22" height="31.5"/>
+                                                <rect key="frame" x="138" y="0.0" width="22" height="24"/>
                                                 <color key="tintColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                                 <connections>
                                                     <action selector="clickShareGameID:" destination="AEr-3C-lAO" eventType="touchUpInside" id="woU-Q8-3VO"/>
@@ -250,7 +250,7 @@
                             <constraint firstItem="kPK-ON-HJt" firstAttribute="top" secondItem="mxd-Xg-pXx" secondAttribute="bottom" id="QRy-Od-2Bq"/>
                             <constraint firstItem="4q6-Up-fRg" firstAttribute="leading" secondItem="tId-4C-tS9" secondAttribute="leadingMargin" constant="10" id="Zv9-SZ-liG"/>
                             <constraint firstAttribute="trailingMargin" secondItem="4q6-Up-fRg" secondAttribute="trailing" constant="10" id="dtA-Cc-nMl"/>
-                            <constraint firstItem="xUX-9d-beP" firstAttribute="top" secondItem="mxd-Xg-pXx" secondAttribute="bottom" constant="55" id="pvD-IX-gJN"/>
+                            <constraint firstItem="xUX-9d-beP" firstAttribute="top" secondItem="mxd-Xg-pXx" secondAttribute="bottom" constant="10" id="pvD-IX-gJN"/>
                             <constraint firstItem="xUX-9d-beP" firstAttribute="centerX" secondItem="tId-4C-tS9" secondAttribute="centerX" id="xc1-O5-Lor"/>
                         </constraints>
                     </view>
@@ -630,6 +630,6 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="7wU-yD-kpd"/>
-        <segue reference="q4G-Ap-N5H"/>
+        <segue reference="J60-u1-36o"/>
     </inferredMetricsTieBreakers>
 </document>
